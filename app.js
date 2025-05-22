@@ -1,5 +1,5 @@
 import express from 'express';
-
+import router from './src/routes/home';
 class App {
   constructor(){
     this.app = express();
@@ -8,15 +8,13 @@ class App {
   }
 
   middlewares(){
-    // Middleware para passar o JSON
+    // Middleware para passar o json
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
   }
   routes(){
-    this.app.get('/', (req, res) => {
-      res.send('Hello World!');
-    });
+    this.app.use(router);
   }
 }
 
-export default new App().app;
+ export default new App().app;
