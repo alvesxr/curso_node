@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
 import router from './src/routes/home';
+import './src/database/index.js'; // Importa o arquivo de conexão com o banco de dados
 class App {
   constructor(){
     this.app = express();
