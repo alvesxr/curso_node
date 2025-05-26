@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
 import router from './src/routes/home';
+import user from './src/routes/user'; // Importa as rotas de usuário
 import './src/database/index.js'; // Importa o arquivo de conexão com o banco de dados
 class App {
   constructor(){
@@ -18,7 +19,8 @@ class App {
     this.app.use(express.urlencoded({ extended: true }));
   }
   routes(){
-    this.app.use(router);
+    this.app.use('/', router);
+    this.app.use('/users/', user)
   }
 }
 
