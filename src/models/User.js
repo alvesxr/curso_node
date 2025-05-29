@@ -57,9 +57,8 @@ export default class User extends Model {
 
     return this;
   }
-
-  static async generateHash(password) {
-    return bcrypt.hash(password, 10); // Método para gerar hash
+  passwordIsValid(password){
+    return bcrypt.compare(password, this.password_hash);
   }
 }
 
