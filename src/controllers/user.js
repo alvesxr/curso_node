@@ -3,15 +3,13 @@ import User from "../models/User.js";
 class UserController {
   async store(req, res) {
     try {
-      console.log("Headers:", req.headers);
-      console.log("Dados recebidos:", req.body);
-
       if (!req.body || Object.keys(req.body).length === 0) {
         return res.status(400).json({ error: "Corpo da requisição vazio" });
       }
 
       const novoUser = await User.create(req.body);
-      return res.status(201).json(novoUser);
+      const { id, nome, email} = novoUser
+      return res.status(201).json({ id, nome, email }); //Só vai exibir id, nome e email agora
     } catch (e) {
       console.error("Erro detalhado:", e);
       if (e.errors) {
@@ -54,12 +52,11 @@ class UserController {
       const user = await User.findByPk(req.userId);
       if (!user) {
         return res.status(404).json({ error: ["Usuário não encontrado"] });
-
-    }
-
+      }
 
       const novosDados = await user.update(req.body);
-      return res.json(novosDados);
+      const { id, nome, email } = novosDados;
+      return res.status(201).json({ id, nome, email }); //Só vai exibir id, nome e email agora
     } catch (e) {
       console.error(e);
       return res.json(null);
@@ -69,16 +66,13 @@ class UserController {
   //delete
   async delete(req, res) {
     try {
-      if (!req.params.id) {
-        return res.status(400).json({ error: ["ID não enviado"] });
-      }
-      const user = await User.findByPk(req.params.id);
+      const user = await User.findByPk(req.userId);
       if (!user) {
         return res.status(404).json({ error: ["Usuário não encontrado"] });
       }
 
       await user.destroy();
-      return res.json(user);
+      return res.json(null); //poderia retornar uma mensagem "usuário deletado"
     } catch (e) {
       console.error(e);
       return res.json(null);
