@@ -5,6 +5,7 @@ import User from '../models/User.js';
 
 const models = [Aluno, User];
 
-const connection = new Sequelize(databaseConfig);
+// Usando apenas a configuração do ambiente development
+const connection = new Sequelize(databaseConfig.development);
 
-models .forEach((model => model.init(connection)));
+models.forEach((model) => model.init(connection));
