@@ -1,12 +1,9 @@
 import { Router } from "express";
-import multer from "multer";
-import foto from "../controllers/foto";
-import multerConfig from "../config/multer";
 
-const upload = multer(multerConfig);
+import foto from "../controllers/foto";
 
 const router = new Router();
 
-router.post("/", upload.single('foto'), foto.store);
+router.post("/", foto.store);
 
 export default router;
