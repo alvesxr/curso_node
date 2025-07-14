@@ -69,9 +69,6 @@ export default class Aluno extends Model {
         tableName: "alunos",
       }
     );
-  }
-
-  static associate(models) {
-    this.hasMany(models.Turma, { foreignKey: 'aluno_id', as: 'turmas' });
+    return this;
   }
 }
