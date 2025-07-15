@@ -27,7 +27,7 @@ module.exports = {
           model: "alunos",
           key: "id",
         },
-        onUpdate: "CASCADE",
+        onUpdate: "SET NULL",
         onDelete: "CASCADE",
       },
       created_at: {

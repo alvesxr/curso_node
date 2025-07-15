@@ -17,16 +17,23 @@ class foto {
           errors: ["Faltando arquivo"],
         });
       }
+      try{
+          const { originalname: original_name, filename } = req.file;
+          const { aluno_id } = req.body;
+          const foto = await Foto.create({
+            original_name,
+            filename,
+            aluno_id,
+          });
 
-      const { originalname: original_name, filename } = req.file;
-      const { aluno_id } = req.body;
-      const foto = await Foto.create({
-        original_name,
-        filename,
-        aluno_id,
-      });
+          return res.json(foto);
+      // eslint-disable-next-line no-unused-vars
+      }catch (e){
+        return res.status(400).json({
+          errors: ['Aluno não existe ou não foi informado corretamente'],
+        })
+      }
 
-      return res.json(foto);
     });
   }
 }
