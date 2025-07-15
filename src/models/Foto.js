@@ -1,5 +1,6 @@
 //referente a tabela alunos
 import Sequelize, { Model } from 'sequelize';
+import app from '../config/app.js';
 export default class Foto extends Model {
   static init(sequelize) {
     super.init(
@@ -20,6 +21,12 @@ export default class Foto extends Model {
             notEmpty: {
               msg: "O campo não pode ser vazio",
             },
+          },
+        },
+        url: {
+          type: Sequelize.VIRTUAL,
+          get() {
+            return `${app.url}/images/${this.getDataValue('filename')}`;
           },
         },
       },

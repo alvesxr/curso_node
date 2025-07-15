@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import {resolve} from "path";
 dotenv.config();
 import express from "express";
 import router from "./src/routes/home";
@@ -20,6 +21,7 @@ class App {
     // Configura os middlewares antes das rotas
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(express.static(resolve(__dirname, "uploads")));
   }
 
   routes() {

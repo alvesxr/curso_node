@@ -8,7 +8,7 @@ class aluno {
       order: [['id', 'DESC'], [Foto, 'id', 'DESC']], //irá mostrar os alunos em ordem decrescente de ID
       include: {
         model: Foto,
-        attributes: ['filename']
+        attributes: ['filename', 'url']
       }
     });
     res.json(alunos);
@@ -37,7 +37,7 @@ class aluno {
         order: [['id', 'DESC'], [Foto, 'id', 'DESC']], //irá mostrar os alunos em ordem decrescente de ID
         include: {
           model: Foto,
-          attributes: ['filename']
+          attributes: ['filename', 'url']
         }
       });
 
