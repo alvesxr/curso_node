@@ -29,10 +29,9 @@ class TokenController {
     );
 
     return (
-      res.json({ token }),
+      res.json({ token, user: { nome: user.nome, id: user.id, email: user.email } }),
       console.log("JWT_SECRET NO TOKEN:", process.env.JWT_SECRET)
     );
-    ;
   }
 }
 
